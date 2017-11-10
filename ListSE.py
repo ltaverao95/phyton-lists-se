@@ -32,13 +32,22 @@ class ListSE():
 
     def remove(self, person: Person):
         temp: Node = self.head
-        while((temp.getRecord() != person) and (temp.haveNext())):
+
+        if(self.head == None):
+            return
+
+        if(temp.person.__eq__(person)):
+            temp.setNext(person)
+            return
+
+        while(temp.getNext() != None):
+            if(temp.getNext().person == person):
+                temp.setNext(temp.getNext().getNext())
+                print("Node deleted")
+                return
+
             temp = temp.getNext()
-        if(temp.getRecord().__eq__(person)):
-            temp.setNext(temp.getNext())
-            print("Node deleted")
-        else:
-            print("Node not found")
+        print("Node not found")
 
     def clear(self):
         self.head = None

@@ -15,7 +15,7 @@ listSE.insert(Person("pepito3", 27, "m", 34870, "sf"), Person("pepito5", 27, "m"
 print(listSE.getPerson(Person("pepito4", 27, "m", 34870, "sf")).person.__dict__)
 
 #Remove by person
-listSE.remove(Person("pepito2", 27, "m", 34870, "sf"))
+listSE.remove(Person("pepito", 27, "m", 34870, "sf"))
 
 #List length
 print(listSE.__len__())
