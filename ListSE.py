@@ -10,6 +10,7 @@ class ListSE():
         length: int = 0
         if(self.isEmpty()):
             return length
+
         temp: Node = self.head
         while(temp != None):
             length += 1
@@ -22,37 +23,42 @@ class ListSE():
         return False
 
     def append(self, person: Person):
-        if (self.head != None):
-            temp: Node = self.head
-            while (temp.getNext() != None):
-                temp = temp.getNext()
-            temp.setNext(Node(person))
-        else:
+
+        if(self.head == None):
             self.head = Node(person)
+            return
+
+        temp: Node = self.head
+        while (temp.getNext() != None):
+            temp = temp.getNext()
+        temp.setNext(Node(person))
 
     def remove(self, person: Person):
-        temp: Node = self.head
 
         if(self.head == None):
             return
 
+        temp: Node = self.head
+
         if(temp.person.__eq__(person)):
-            temp.setNext(person)
+            self.head = temp.getNext()
             return
 
         while(temp.getNext() != None):
-            if(temp.getNext().person == person):
+            if(temp.getNext().person.__eq__(person)):
                 temp.setNext(temp.getNext().getNext())
-                print("Node deleted")
                 return
 
             temp = temp.getNext()
-        print("Node not found")
 
     def clear(self):
         self.head = None
 
     def insert(self, index: Person, object: Person):
+
+        if(index is None or object is None):
+            return
+
         newPerson: Node = Node(object)
         temp: Node = self.head
         if(temp == None):
@@ -63,23 +69,27 @@ class ListSE():
         if(temp.getRecord().__eq__(index)):
             newPerson.setNext(temp.getNext())
             temp.setNext(newPerson)
-        else:
-            print("Node not found")
 
     def getPerson(self, person: Person) -> Person:
+
+        if(self.head == None):
+            return None
+
         temp: Node = self.head
         while(temp != None):
             if(temp.getRecord().__eq__(person)):
-                return temp
+                return temp.person
             temp = temp.getNext()
         return None
 
     def getPersonsList(self) -> []:
-        temp: Node = self.head
+
         responseList: [] = []
 
-        if(temp == None):
+        if(self.head == None):
             return responseList
+
+        temp: Node = self.head
 
         while(temp != None):
             responseList.append(temp.person)
